@@ -1,51 +1,47 @@
 
 #include<stdio.h>
 #define N 5
-void swap(int *x,int *y);
+void search(int *x,int y,int *z);
 main()
 {
-    int arr1[N],arr2[N],i,temp;
-    int const *p1=arr1,*p2=arr2;
+    int arr1[N],i,temp,n,count=0;
+    int const *p1=arr1;
     int size=sizeof(arr1)/sizeof(int);
     //size=5
 
-    void (*fp)(int *,int *)=&swap;
+    int (*fp)(int *,int ,int * )=&search;
 
 
-    printf("Enter 5 values of array 1  \n");
+    printf("Enter 5 values of array   \n");
     for(i=0;i<size;i++)
     {
         scanf("%d",p1+i);
     }
-    printf("Enter 5 values of array 2 \n");
-    for(i=0;i<size;i++)
-    {
-        scanf("%d",p2+i);
-    }
+    printf("Enter number which u want to search \n");
+    scanf("%d",&n);
 
     for(i=0;i<size;i++)
     {
-        fp((p1+i),(p2+i));
+        fp((p1+i),n,&count);
       /*  temp=*(p1+i);
         *(p1+i)=*(p2+i);
         *(p2+i)=temp;*/
     }
-    printf("Array 1 values after swapping are\n");
-    for(i=0;i<size;i++)
+    if(count==0)
     {
-        printf("%d ",*(p1+i));
+        printf("Not present");
     }
-    printf("\nArray 2 values after swapping are\n");
-    for(i=0;i<size;i++)
-    {
-        printf("%d ",*(p2+i));
-    }
+
+
 }
 
-void swap(int *x,int *y)
+void search(int *x,int y,int *z)
 {
-    int temp=0;
-    temp=*x;
-    *x=*y;
-    *y=temp;
+    if(*x==y)
+    {
+        *z=*z+1;
+        printf("Present");
+    }
+
+
 }
